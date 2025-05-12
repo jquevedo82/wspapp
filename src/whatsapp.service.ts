@@ -47,6 +47,7 @@ export class WhatsappService {
         if (message.body.toLowerCase() === 'start') {
           if (!this.activeClients.has(phoneNumber)) {
             this.activateBot(phoneNumber);
+            console.log('El bot ha sido activado para este cliente.');
           } else {
             console.log('El bot ya está activo para este cliente.');
           }
@@ -118,10 +119,9 @@ export class WhatsappService {
           }
 
           // Guardar el mensaje de texto en el archivo
-          const textoMensaje = `[${new Date().toISOString()}] ${
-            message.body
-          }\n`;
-          fs.appendFile(textFileName, textoMensaje, () => {});
+          const textoMensaje = `[${new Date().toISOString()}] ${message.body
+            }\n`;
+          fs.appendFile(textFileName, textoMensaje, () => { });
           // Si no tiene medios adjuntos, es un mensaje de texto
           console.log(
             'Se recibió un mensaje de texto: ',
